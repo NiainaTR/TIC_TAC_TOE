@@ -86,16 +86,14 @@ public class TicTacToe {
             
             boolean isGameOn = true;
 
-            printBoardState();
-
             while (isGameOn) {
                 printBoardState();
                 makeMovePlayer(currentPlayer , sc);
-                //isGameOn = !isGameWin && !isGameNull;
-                //if(isGameOn) switchPlayer();
+                isGameOn = !isGameWin() && !isBoardFull();
+                if(isGameOn) switchPlayer();
             }
 
-            //displayGameResult();
+            displayGameResult();
             
 
             sc.close();
@@ -125,7 +123,7 @@ public class TicTacToe {
             }
         }
 
-        
+
         private void makeMovePlayer(Player currentPlayer , Scanner sc){
             boolean isValidMove = false;
             while(!isValidMove){
@@ -146,79 +144,46 @@ public class TicTacToe {
                 }
             }
         }
-        
-    }
 
+        private boolean isGameWin(){
+            char symbol = currentPlayer._symbol;
 
-
-
-        /*
-        private void printBoard() {
-            System.out.println("  0 1 2");
             for (int i = 0; i < BOARD_SIZE; i++) {
-                System.out.print(i + " ");
-                for (int j = 0; j < BOARD_SIZE; j++) {
-                    System.out.print(board[i][j]);
-                    if (j < BOARD_SIZE - 1) {
-                        System.out.print("|");
-                    }
-                }
-                System.out.println();
-                if (i < BOARD_SIZE - 1) {
-                    System.out.println("  -----");
-                }
-            }
-        }
-
-        
-        private void playerMove(Player player, Scanner sc) {
-            boolean validMove = false;
-            while (!validMove) {
-                System.out.println(player.getName() + " (" + player.getMarker() + "), enter your move (row and column): ");
-                int row = sc.nextInt();
-                int col = sc.nextInt();
-                sc.nextLine(); // consume the newline character
-
-                if (row >= 0 && row < BOARD_SIZE && col >= 0 && col < BOARD_SIZE && board[row][col] == ' ') {
-                    board[row][col] = player.getMarker();
-                    validMove = true;
-                } else {
-                    System.out.println("This move is not valid. Try again.");
-                }
-            }
-        }
-        private boolean checkWin() {
-            char marker = currentPlayer.getMarker();
-            // Check rows and columns
-            for (int i = 0; i < BOARD_SIZE; i++) {
-                if ((board[i][0] == marker && board[i][1] == marker && board[i][2] == marker) ||
-                    (board[0][i] == marker && board[1][i] == marker && board[2][i] == marker)) {
+                //Check for rows and columns
+                if ((board[i][0] == symbol && board[i][1] == symbol && board[i][2] == symbol) ||
+                    (board[0][i] == symbol && board[1][i] == symbol && board[2][i] == symbol)) {
                     return true;
                 }
             }
             // Check diagonals
-            if ((board[0][0] == marker && board[1][1] == marker && board[2][2] == marker) ||
-                (board[0][2] == marker && board[1][1] == marker && board[2][0] == marker)) {
+            if ((board[0][0] == symbol && board[1][1] == symbol && board[2][2] == symbol) ||
+                (board[0][2] == symbol && board[1][1] == symbol && board[2][0] == symbol)) {
                 return true;
             }
             return false;
         }
 
-        private boolean isBoardFull() {
-            for (int i = 0; i < BOARD_SIZE; i++) {
-                for (int j = 0; j < BOARD_SIZE; j++) {
-                    if (board[i][j] == ' ') {
-                        return false;
-                    }
+        private boolean isBoardFull(){
+            for(int i = 0 ; i < BOARD_SIZE ; i++){
+                for(int j = 0 ; j < BOARD_SIZE ; j++){
+                    if(board[i][j] == ' ') return false;
                 }
             }
             return true;
         }
 
-        private void switchPlayer() {
-            currentPlayer = (currentPlayer == p1) ? p2 : p1;
+        private void switchPlayer(){
+            currentPlayer = currentPlayer == p1 ? p2 : p1;   
         }
+
+        private void displayGameResult(){
+            //display the last state of board
+            printBoardState();
+            //Win or Null
+            if(isGameWin()) System.out.println("The player " + currentPlayer._name + " with "+ currentPlayer._symbol + "symbol is winner !!!"); 
+            else System.out.println("Null !!");
+        }
+        
     }
-    */
     
 }
