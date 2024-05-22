@@ -1,4 +1,3 @@
-package console;
 import java.util.*;
 
 /**
@@ -85,20 +84,18 @@ public class TicTacToe {
             System.out.println("The player " + currentPlayer.getPlayerName() + " with symbol " + currentPlayer.getPlayerSymbol() + " begin !!");
 
             
-            //boolean isGameOn = true;
+            boolean isGameOn = true;
 
             printBoardState();
 
-            /* 
             while (isGameOn) {
                 printBoardState();
-                makeMovePlayer();
-                isGameOn = !isGameWin && !isGameNull;
-                if(isGameOn) switchPlayer();
+                makeMovePlayer(currentPlayer , sc);
+                //isGameOn = !isGameWin && !isGameNull;
+                //if(isGameOn) switchPlayer();
             }
 
-            displayGameResult();
-            */
+            //displayGameResult();
             
 
             sc.close();
@@ -128,6 +125,28 @@ public class TicTacToe {
             }
         }
 
+        
+        private void makeMovePlayer(Player currentPlayer , Scanner sc){
+            boolean isValidMove = false;
+            while(!isValidMove){
+                System.out.println("It's Player " + currentPlayer._name + " to play , enter the row and columns : ");
+                System.out.println("Row : ");
+                int row = sc.nextInt();
+                System.out.println("Column : ");
+                int column = sc.nextInt();
+                sc.nextLine();
+                
+                //Test if row and column are valid 
+                if(row >= 0 && row <= BOARD_SIZE && column >= 0 && column <= BOARD_SIZE && board[row][column] == ' '){
+                    board[row][column] = currentPlayer.getPlayerSymbol();
+                    isValidMove = true;
+                }
+                else{
+                    System.out.println("This is not a valid move. Please try another move !!");
+                }
+            }
+        }
+        
     }
 
 
