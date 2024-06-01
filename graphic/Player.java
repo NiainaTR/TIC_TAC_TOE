@@ -1,9 +1,13 @@
+
 public class Player{
 	private String _name;
 	private String _symbol;
 
 
-	public Player(){}
+	public Player(){
+		this._name = "";
+		this._symbol = "";
+	}
 	/**
 	 *
 	 * Setter playerName
@@ -35,3 +39,4 @@ public class Player{
 
 	 public String getPlayerSymbol() {return this._symbol;}
 }
+

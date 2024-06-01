@@ -1,5 +1,3 @@
-package console;
-
 import java.util.*;
 
 
@@ -23,7 +21,7 @@ public class GameConsole{
 	     initializeStateBoard();
 	}
 
-	public void initializeStateBoard(){
+	private void initializeStateBoard(){
 		for(int i = 0 ; i < BOARD_SIZE ; i++){
 			for(int j = 0 ; j < BOARD_SIZE ; j++){
 			  stateBoard[i][j] = " ";
@@ -43,7 +41,6 @@ public class GameConsole{
 		p1.setPlayerName(sc.nextLine());
 		p1.setPlayerSymbol("O");
 
-
 		System.out.println("Enter player2's name : ");
 		p2 = new Player();
 		p2.setPlayerName(sc.nextLine());
@@ -56,7 +53,7 @@ public class GameConsole{
 		this.isGameOn = true;
 
 		while(isGameOn){
-	            makeMovePlayer(this.currentPlayer , sc);
+	        makeMovePlayer(this.currentPlayer , sc);
 		    this.isGameOn = !isGameWin() && !isBoardFull();
 		    if(isGameOn) switchPlayer();
 		}
@@ -150,7 +147,7 @@ public class GameConsole{
 	private void displayGameResult(){
 	   //display the last state of board 
 	   printBoardState();
-
+		
 	   //Win or Null
 	   if(isGameWin()){ 
 		System.out.println("The player " + currentPlayer.getPlayerName() + " with symbol " + currentPlayer.getPlayerSymbol() + " win the game !!");
