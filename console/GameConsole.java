@@ -147,12 +147,12 @@ public class GameConsole{
 	private void displayGameResult(){
 	   //display the last state of board 
 	   printBoardState();
-		
+
 	   //Win or Null
 	   if(isGameWin()){ 
 		System.out.println("The player " + currentPlayer.getPlayerName() + " with symbol " + currentPlayer.getPlayerSymbol() + " win the game !!");
 	   }
-	   else System.out.println("Null !!");
+	   else System.out.println("Partie Null !!");
 	    
 	}
 }
